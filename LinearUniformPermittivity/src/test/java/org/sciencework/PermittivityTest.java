@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
 import org.apache.commons.math3.complex.Complex;
 import org.junit.Test;
-import org.sciencework.core.ComplexDerivativeStructure;
 
 public class PermittivityTest {
 	
@@ -21,7 +20,7 @@ public class PermittivityTest {
 		double v = -0.03;
 		double bound = getBound(a, b);
 		
-		Permittivity e = new Permittivity( a, b, v );
+		PermittivityImpl e = new PermittivityImpl( a, b, v );
 		for ( double i = -100; i < 100; i += 0.732 ) {
 			double real = 1;
 			double img = 0;
@@ -29,7 +28,7 @@ public class PermittivityTest {
 				real = a*i*i + b;
 				img = v;
 			}
-			assertEquals( new Complex(real,img), e.value(i) );
+			assertEquals( new Complex(real,img), new Complex( e.getReal(i), e.getImg(i) ) );
 		}
 	}
 	
@@ -40,14 +39,13 @@ public class PermittivityTest {
 		double v = -0.03;
 		double bound = getBound(a, b);
 
-		Permittivity e = new Permittivity( a, b, v );
+		PermittivityImpl e = new PermittivityImpl( a, b, v );
 		for ( double i = -100; i < 100; i += 0.232 ) {
 			DerivativeStructure s = new DerivativeStructure(1,3,0,i);
-			ComplexDerivativeStructure cs = new ComplexDerivativeStructure(s, s);
 			
-			Complex first = new Complex( e.value(cs).getReal().getPartialDerivative(1), e.value(cs).getImg().getPartialDerivative(1));
-			Complex second = new Complex( e.value(cs).getReal().getPartialDerivative(2), e.value(cs).getImg().getPartialDerivative(2));
-			Complex third = new Complex( e.value(cs).getReal().getPartialDerivative(3), e.value(cs).getImg().getPartialDerivative(3));
+			Complex first = new Complex( e.getRealDerivative(s).getPartialDerivative(1), e.getImgDerivative(s).getPartialDerivative(1));
+			Complex second = new Complex( e.getRealDerivative(s).getPartialDerivative(2), e.getImgDerivative(s).getPartialDerivative(2));
+			Complex third = new Complex( e.getRealDerivative(s).getPartialDerivative(3), e.getImgDerivative(s).getPartialDerivative(3));
 			
 			Complex theFirst = new Complex(0,0);
 			Complex theSecond = new Complex(0,0);

@@ -11,7 +11,7 @@ public class TE implements FirstOrderDifferentialEquations {
 	
 	private double sinOfTetaSquare;
 	private double k;
-	private Permittivity e;
+	private PermittivityImpl e;
 	
 	private final int DIM = 4;
 	public final long c = 10000000000L;
@@ -20,7 +20,7 @@ public class TE implements FirstOrderDifferentialEquations {
 		sinOfTetaSquare = Math.pow( Math.sin( teta ), 2);
 	}
 	
-	public void setPermittivity( Permittivity e ) {
+	public void setPermittivity( PermittivityImpl e ) {
 		this.e = e;
 	}
 	
@@ -40,9 +40,8 @@ public class TE implements FirstOrderDifferentialEquations {
 		if ( y.length != DIM ) throw new DimensionMismatchException( y.length, DIM);
 		if ( yDot.length != DIM ) throw new DimensionMismatchException( yDot.length, DIM);
 		
-		Complex E = e.value(t);
-		double Er = E.getReal();
-		double Ei = E.getImaginary();
+		double Er = e.getReal(t);
+		double Ei = e.getImg(t);
 		
 		Complex Ey1 = new Complex( y[0], y[1] );
 		Complex Bz1 = new Complex( y[2], y[3] );
@@ -51,7 +50,7 @@ public class TE implements FirstOrderDifferentialEquations {
 		double Sz0 = Ey1.multiply( Bz1.multiply( Math.tan( Math.asin( Math.pow(sinOfTetaSquare, 2)))).conjugate() ).getReal();
 		double S0 = Math.sqrt( Math.pow(Sx0, 2) + Math.pow(Sz0, 2) );
 //		System.out.println( "(" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ")" );
-		System.out.println( E + "-> ( " + Sx0 + ", " + Sz0 + "): " + S0);
+		System.out.println( new Complex(Er,Ei) + "-> ( " + Sx0 + ", " + Sz0 + "): " + S0);
 //		System.out.println(S0);
 				
 		yDot[0] = -k * y[3];

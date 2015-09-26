@@ -1,9 +1,7 @@
 package org.sciencework;
 
 import org.apache.commons.math3.complex.Complex;
-import org.apache.commons.math3.ode.nonstiff.AdamsBashforthIntegrator;
 import org.apache.commons.math3.ode.nonstiff.AdamsMoultonIntegrator;
-//import org.apache.commons.math3.ode.nonstiff.EulerIntegrator;
 
 public class Calculator {
 
@@ -13,7 +11,7 @@ public class Calculator {
 		double b = -1;
 		double v = -0.1;
 		
-		Permittivity e = new Permittivity( a, b, v );
+		PermittivityImpl e = new PermittivityImpl( a, b, v );
 		
 		Complex Ey0 = new Complex(1,0);
 		Complex Bz0 = new Complex(1,0);
