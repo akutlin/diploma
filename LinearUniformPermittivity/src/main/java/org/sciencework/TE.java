@@ -3,28 +3,24 @@ package org.sciencework;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.exception.MaxCountExceededException;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 
 import javax.annotation.Nonnull;
 
 public class TE implements FirstOrderDifferentialEquations {
 	
-	private double sinOfTetaSquare;
-	private double k;
-	private PermittivityImpl e;
+	private final double sinOfTetaSquare;
+	private final double k;
+	private final Permittivity e;
 	
 	private final int DIM = 4;
-	public final long c = 10000000000L;
+	public final long c = (long) 1E10;
 	
-	public void setTeta( double teta ) {
+	public TE( double teta, Permittivity e, double w ) {
 		sinOfTetaSquare = Math.pow( Math.sin( teta ), 2);
-	}
-	
-	public void setPermittivity( PermittivityImpl e ) {
 		this.e = e;
-	}
-	
-	public void setFrequency( double w ) {
 		k = w / c;
 	}
 
@@ -43,20 +39,28 @@ public class TE implements FirstOrderDifferentialEquations {
 		double Er = e.getReal(t);
 		double Ei = e.getImg(t);
 		
-		Complex Ey1 = new Complex( y[0], y[1] );
-		Complex Bz1 = new Complex( y[2], y[3] );
-		
-		double Sx0 = Ey1.multiply(Bz1.conjugate()).getReal();
-		double Sz0 = Ey1.multiply( Bz1.multiply( Math.tan( Math.asin( Math.pow(sinOfTetaSquare, 2)))).conjugate() ).getReal();
-		double S0 = Math.sqrt( Math.pow(Sx0, 2) + Math.pow(Sz0, 2) );
-//		System.out.println( "(" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ")" );
-		System.out.println( new Complex(Er,Ei) + "-> ( " + Sx0 + ", " + Sz0 + "): " + S0);
+		System.out.println( "(" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ")" );
+//		RealVector S = getPowerFlow( new Complex( y[0], y[1] ), new Complex( y[2], y[3] ));
+//		double S0 = S.getNorm();
+//		System.out.println( new Complex(Er,Ei) + " -> " + S + " : " + S0);
 //		System.out.println(S0);
 				
 		yDot[0] = -k * y[3];
 		yDot[1] = k * y[2];
 		yDot[2] = -k * ( Ei * y[0] + ( Er - sinOfTetaSquare ) * y[1] );
 		yDot[3] = k * ( y[0] * ( Er - sinOfTetaSquare ) - Ei * y[1] );
+	}
+	
+	/**
+	 * Pointing's vector
+	 * @param Ey
+	 * @param Bz
+	 * @return { Sx, Sz }
+	 */
+	public RealVector getPowerFlow( Complex Ey, Complex Bz ) {
+		double Sx = Ey.multiply(Bz.conjugate()).getReal();
+		double Sz = Ey.multiply( Bz.multiply( Math.tan( Math.asin( Math.sqrt(sinOfTetaSquare)))).conjugate() ).getReal();
+		return MatrixUtils.createRealVector( new double[] { Sx, Sz} );
 	}
 
 }
