@@ -10,13 +10,13 @@ public class Calculator {
 		
 		double a = 1;
 		double b = -1;
-		double v = -0.1;
+		double v = 0;
+		double teta = 0;
 		
 		PermittivityImpl e = new PermittivityImpl( a, b, v );
 		
 		Complex Ey0 = new Complex(1,0);
-		Complex Bz0 = new Complex(1,0);
-		double teta = 0;
+		Complex Bz0 = new Complex(1 * Math.cos(teta),0);
 		
 		TE wave = new TE(teta, e, 1E11);
 		
@@ -37,7 +37,7 @@ public class Calculator {
 		RealVector S1 = wave.getPowerFlow(Ey1, Bz1);
 		double S1N = S1.getNorm();
 		
-		double dissipation = ( S1N - S0N )/S1N; //S1 is the begining!!!
+		double dissipation = ( S0N - S1N )/S1N; //S1 is the begining!!!
 		
 		System.out.println( (double) Math.round( dissipation * 1000 ) / 1000 );
 		

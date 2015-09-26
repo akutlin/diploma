@@ -16,7 +16,7 @@ public class TE implements FirstOrderDifferentialEquations {
 	private final Permittivity e;
 	
 	private final int DIM = 4;
-	public final long c = (long) 1E10;
+	public static final long c = (long) 1E10;
 	
 	public TE( double teta, Permittivity e, double w ) {
 		sinOfTetaSquare = Math.pow( Math.sin( teta ), 2);
@@ -39,7 +39,7 @@ public class TE implements FirstOrderDifferentialEquations {
 		double Er = e.getReal(t);
 		double Ei = e.getImg(t);
 		
-		System.out.println( "(" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ")" );
+//		System.out.println( "(" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ")" );
 //		RealVector S = getPowerFlow( new Complex( y[0], y[1] ), new Complex( y[2], y[3] ));
 //		double S0 = S.getNorm();
 //		System.out.println( new Complex(Er,Ei) + " -> " + S + " : " + S0);
