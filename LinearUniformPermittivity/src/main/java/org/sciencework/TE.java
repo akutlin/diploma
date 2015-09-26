@@ -58,7 +58,7 @@ public class TE implements FirstOrderDifferentialEquations {
 	 * @return { Sx, Sz }
 	 */
 	public RealVector getPowerFlow( Complex Ey, Complex Bz ) {
-		double Sx = Ey.multiply(Bz.conjugate()).getReal();
+		double Sx = Ey.multiply( Bz.conjugate()).getReal();
 		double Sz = Ey.multiply( Bz.multiply( Math.tan( Math.asin( Math.sqrt(sinOfTetaSquare)))).conjugate() ).getReal();
 		return MatrixUtils.createRealVector( new double[] { Sx, Sz} );
 	}

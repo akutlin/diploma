@@ -2,7 +2,7 @@ package org.sciencework;
 
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.linear.RealVector;
-import org.apache.commons.math3.ode.nonstiff.AdamsMoultonIntegrator;
+import org.apache.commons.math3.ode.nonstiff.DormandPrince853Integrator;
 
 public class Calculator {
 
@@ -10,17 +10,18 @@ public class Calculator {
 		
 		double a = 1;
 		double b = -1;
-		double v = 0;
+		double v = -0.1;
 		double teta = 0;
+		double k = 100;
 		
 		PermittivityImpl e = new PermittivityImpl( a, b, v );
 		
 		Complex Ey0 = new Complex(1,0);
 		Complex Bz0 = new Complex(1 * Math.cos(teta),0);
 		
-		TE wave = new TE(teta, e, 1E11);
+		TE wave = new TE(teta, e, k * TE.c);
 		
-		AdamsMoultonIntegrator integrator = new  AdamsMoultonIntegrator(3, 0.0000001, 0.001, 0.001, 0.001);
+		DormandPrince853Integrator integrator = new  DormandPrince853Integrator(1E-11, 1E-3, 1E-10, 1E-10);
 		
 		double y[] = new double[] { Ey0.getReal(), Ey0.getImaginary(), Bz0.getReal(), Bz0.getImaginary() };
 		
@@ -39,7 +40,7 @@ public class Calculator {
 		
 		double dissipation = ( S0N - S1N )/S1N; //S1 is the begining!!!
 		
-		System.out.println( (double) Math.round( dissipation * 1000 ) / 1000 );
+		System.out.println( (double) Math.round( dissipation * 100 ) / 100 );
 		
 	}
 
