@@ -39,11 +39,11 @@ public class TE implements FirstOrderDifferentialEquations {
 		double Er = e.getReal(t);
 		double Ei = e.getImg(t);
 		
-//		System.out.println( "(" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ")" );
 //		RealVector S = getPowerFlow( new Complex( y[0], y[1] ), new Complex( y[2], y[3] ));
 //		double S0 = S.getNorm();
 //		System.out.println( new Complex(Er,Ei) + " -> " + S + " : " + S0);
 //		System.out.println(S0);
+//		System.out.println( t + " -> (" + y[0] + "," + y[1] + "), (" + y[2] + "," + y[3] + ") : " + S0 );
 				
 		yDot[0] = -k * y[3];
 		yDot[1] = k * y[2];

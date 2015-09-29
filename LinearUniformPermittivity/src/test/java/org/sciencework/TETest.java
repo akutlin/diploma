@@ -496,12 +496,12 @@ public class TETest {
 		
 		TE wave = new TE(teta, solid, k * TE.c);
 		
-		Complex Ey0 = new Complex(1,0);
-		Complex Bz0 = new Complex(1 * Math.cos(teta),0);
+		Complex Ey0 = new Complex(-3913569.1035035835,1.8345436227372706E7);//(1,0);
+		Complex Bz0 = new Complex(-1.8345436227372717E7,-3913569.103503531);//(1 * Math.cos(teta),0);
 						
 		double y[] = new double[] { Ey0.getReal(), Ey0.getImaginary(), Bz0.getReal(), Bz0.getImaginary() };
-		
-		double t0 = 20;
+
+		double t0 = -7.093716540136103;//20;
 		double t1 = -20;
 		integrator.integrate(wave, t0, y, t1, y);
 		
@@ -554,7 +554,7 @@ public class TETest {
 		
 		double t0 = 20;
 		double t1 = -20;
-		integrator.integrate(wave, t0, y, t1, y);
+		integrator.integrate(wave, t0, y, t1, y); System.out.println("################################################");
 		integrator.integrate(wave, t1, y, t0, y);
 		
 		RealVector finaly = MatrixUtils.createRealVector(y);
