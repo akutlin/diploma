@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     19848,        586]
-NotebookOptionsPosition[     19464,        569]
-NotebookOutlinePosition[     19823,        585]
-CellTagsIndexPosition[     19780,        582]
+NotebookDataLength[     22613,        648]
+NotebookOptionsPosition[     22187,        630]
+NotebookOutlinePosition[     22546,        646]
+CellTagsIndexPosition[     22503,        643]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -534,11 +534,12 @@ Cell[BoxData[{
    3.6740791448016567`*^9, 3.6742031900021987`*^9, {3.674387475339168*^9, 
    3.674387491330083*^9}, {3.6744579248728867`*^9, 3.674457929338509*^9}}],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"SaveData", "[", 
-    RowBox[{"outputFile_", ",", "data_", ",", "format_"}], "]"}], ":=", " ", 
+    RowBox[{"outputFile_", ",", "data_", ",", 
+     RowBox[{"format_:", "\"\<CSV\>\""}]}], "]"}], ":=", " ", 
    "\[IndentingNewLine]", 
    RowBox[{"Module", "[", 
     RowBox[{
@@ -565,7 +566,67 @@ Cell[BoxData[
        "]"}], ";", "\[IndentingNewLine]", 
       RowBox[{"Export", "[", 
        RowBox[{"output", ",", "$data", ",", "$format"}], "]"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input"]
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetData", "[", 
+    RowBox[{"inputFile_", ",", 
+     RowBox[{"format_:", "Automatic"}]}], "]"}], ":=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "inputFile"}], "}"}], 
+      "]"}], ",", "format"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.675159449117309*^9, 3.675159584967677*^9}, {
+  3.675159628892459*^9, 3.675159630003483*^9}, {3.67516218002868*^9, 
+  3.67516218185019*^9}, {3.6751623917739487`*^9, 3.675162420532241*^9}, {
+  3.6751627839376497`*^9, 3.675162786872858*^9}, {3.675163195065262*^9, 
+  3.675163237635866*^9}, {3.675164308298533*^9, 3.675164309708365*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"config", "=", 
+   RowBox[{"Dataset", "[", "\[IndentingNewLine]", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"\"\<isotropism\>\"", "\[Rule]", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{
+         "\"\<directory\>\"", "\[Rule]", "\"\<results/isotropism/\>\""}], ",", 
+         RowBox[{
+         "\"\<data\>\"", "\[Rule]", 
+          "\"\<results/isotropism/isotropism.csv\>\""}]}], "|>"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\"\<teta\>\"", "\[Rule]", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"\"\<directory\>\"", "\[Rule]", "\"\<results/teta/\>\""}], 
+         ",", 
+         RowBox[{
+         "\"\<data\>\"", "\[Rule]", "\"\<results/teta/teta.csv\>\""}]}], 
+        "|>"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"\"\<eta\>\"", "\[Rule]", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"\"\<directory\>\"", "\[Rule]", "\"\<results/eta/\>\""}], 
+         ",", 
+         RowBox[{"\"\<data\>\"", "\[Rule]", "\"\<results/eta/eta.csv\>\""}]}],
+         "|>"}]}]}], "|>"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.67515903894162*^9, 3.6751590506664467`*^9}, {
+   3.6751590839005938`*^9, 3.675159328757609*^9}, {3.6751594016398563`*^9, 
+   3.675159408580488*^9}, {3.675161372530683*^9, 3.675161398195088*^9}, {
+   3.675161451644512*^9, 3.6751614590122957`*^9}, {3.675161792955722*^9, 
+   3.6751617995677757`*^9}, {3.675161868018001*^9, 3.675161905727235*^9}, {
+   3.675162303154121*^9, 3.67516230576311*^9}, {3.675162798011705*^9, 
+   3.675162809024084*^9}, {3.6751629608282833`*^9, 3.675162967071314*^9}, {
+   3.675163036859683*^9, 3.675163044812495*^9}, {3.6751634292791777`*^9, 
+   3.675163460171968*^9}, 3.675163697731086*^9, {3.675165385890861*^9, 
+   3.6751653929765244`*^9}, {3.675165598622892*^9, 3.67516563403897*^9}, {
+   3.675165860300569*^9, 3.675165865350675*^9}, {3.675166237476221*^9, 
+   3.675166284647883*^9}}]
 },
 WindowSize->{Full, Full},
 WindowMargins->{{-8, Automatic}, {Automatic, 0}},
@@ -585,9 +646,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 6729, 181, 322, "Input"],
-Cell[7290, 203, 8319, 253, 422, "Input"],
+Cell[7290, 203, 8319, 253, 364, "Input"],
 Cell[15612, 458, 2641, 76, 105, "Input"],
-Cell[18256, 536, 1204, 31, 131, "Input"]
+Cell[18256, 536, 1994, 49, 148, "Input"],
+Cell[20253, 587, 1930, 41, 114, "Input"]
 }
 ]
 *)
