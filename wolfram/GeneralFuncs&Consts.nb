@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23022,        658]
-NotebookOptionsPosition[     22597,        640]
-NotebookOutlinePosition[     22955,        656]
-CellTagsIndexPosition[     22912,        653]
+NotebookDataLength[     23303,        664]
+NotebookOptionsPosition[     22876,        646]
+NotebookOutlinePosition[     23236,        662]
+CellTagsIndexPosition[     23193,        659]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -621,7 +621,13 @@ Cell[BoxData[
           "\"\<results/eta/low-field.csv\>\""}], ",", 
          RowBox[{
          "\"\<polarization\>\"", "\[Rule]", 
-          "\"\<results/eta/polarization.csv\>\""}]}], "|>"}]}]}], "|>"}], 
+          "\"\<results/eta/polarization.csv\>\""}]}], "|>"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\"\<dispersionRelations\>\"", "\[Rule]", 
+       RowBox[{"<|", 
+        RowBox[{
+        "\"\<directory\>\"", "\[Rule]", 
+         "\"\<results/dispersionRelations/\>\""}], "|>"}]}]}], "|>"}], 
     "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.67515903894162*^9, 3.6751590506664467`*^9}, {
    3.6751590839005938`*^9, 3.675159328757609*^9}, {3.6751594016398563`*^9, 
@@ -636,9 +642,9 @@ Cell[BoxData[
    3.675165860300569*^9, 3.675165865350675*^9}, {3.675166237476221*^9, 
    3.675166284647883*^9}, {3.675343464464397*^9, 3.675343490080405*^9}, {
    3.675490142711315*^9, 3.675490170487471*^9}, {3.675499744452858*^9, 
-   3.6754997481083*^9}}]
+   3.6754997481083*^9}, {3.675597773737919*^9, 3.67559781978675*^9}}]
 },
-WindowSize->{808, 911},
+WindowSize->{Full, Full},
 WindowMargins->{{-8, Automatic}, {Automatic, -8}},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
 2014)",
@@ -655,11 +661,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 6729, 181, 418, "Input"],
-Cell[7290, 203, 8319, 253, 564, "Input"],
-Cell[15612, 458, 2641, 76, 122, "Input"],
-Cell[18256, 536, 1994, 49, 165, "Input"],
-Cell[20253, 587, 2340, 51, 165, "Input"]
+Cell[558, 20, 6729, 181, 322, "Input"],
+Cell[7290, 203, 8319, 253, 364, "Input"],
+Cell[15612, 458, 2641, 76, 105, "Input"],
+Cell[18256, 536, 1994, 49, 148, "Input"],
+Cell[20253, 587, 2619, 57, 131, "Input"]
 }
 ]
 *)
